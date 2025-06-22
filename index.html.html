@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMR PRINT HOUSE – Your One-Stop Creative Printing Solution</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the Inter font and smooth scrolling */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            /* Dark mode transitions - keeping for other elements if dark mode CSS remains, though button is removed */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .dark::-webkit-scrollbar-track {
+            background: #333;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .dark::-webkit-scrollbar-thumb {
+            background: #aaa;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .dark::-webkit-scrollbar-thumb:hover {
+            background: #ccc;
+        }
+        /* Simple focus styles for accessibility */
+        :focus-visible {
+            outline: 2px solid #3b82f6; /* Blue outline */
+            outline-offset: 2px;
+            border-radius: 0.5rem; /* Match Tailwind rounded-lg */
+        }
+        /* Keyframe animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes blob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .animate-blob {
+            animation: blob 7s infinite cubic-bezier(0.6, 0.2, 0.4, 0.8);
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        /* Custom glow effect for the phone number link */
+        .phone-number-link:hover {
+            text-shadow: 0 0 8px rgba(37, 99, 235, 0.8), 0 0 15px rgba(37, 99, 235, 0.6); /* Blue glow */
+        }
+
+        /* 3D-like animation for service icons container */
+        .icon-circle-container {
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            transform-origin: center center;
+            perspective: 1000px; /* Essential for correct 3D transforms */
+        }
+
+        .group:hover .icon-circle-container {
+            transform: scale(1.1) rotateY(15deg); /* Subtle 3D rotation and pop */
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4); /* Enhanced shadow for depth */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 py-4 px-6 md:px-12">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3 rounded-lg p-2 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                <img src="https://placehold.co/60x60/transparent/000000?text=IMR" alt="IMR Print House Logo" class="h-10 w-10 md:h-12 md:w-12">
+                <span class="text-3xl font-extrabold text-blue-600 hover:text-blue-700">IMR PRINT HOUSE</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-lg font-medium text-gray-700 hover:text-blue-600 transition duration-200 ease-in-out rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">About Us</a>
+                <a href="#services" class="text-lg font-medium text-gray-700 hover:text-blue-600 transition duration-200 ease-in-out rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Services</a>
+                <a href="#why-choose-us" class="text-lg font-medium text-gray-700 hover:text-blue-600 transition duration-200 ease-in-out rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Why Choose Us</a>
+                <a href="#contact" class="text-lg font-medium text-blue-600 bg-blue-100 hover:bg-blue-200 px-4 py-2 rounded-lg transition duration-200 ease-in-out shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="flex items-center md:hidden">
+                <button id="mobile-menu-button" class="p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200" aria-label="Toggle mobile menu">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-4 px-4 pb-4 bg-white rounded-b-lg shadow-md transition-colors duration-300">
+            <a href="#about" class="block text-gray-700 hover:text-blue-600 text-lg font-medium transition duration-200 rounded-md py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">About Us</a>
+            <a href="#services" class="block text-gray-700 hover:text-blue-600 text-lg font-medium transition duration-200 rounded-md py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Services</a>
+            <a href="#why-choose-us" class="block text-gray-700 hover:text-blue-600 text-lg font-medium transition duration-200 rounded-md py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Why Choose Us</a>
+            <a href="#contact" class="block text-blue-600 bg-blue-100 hover:bg-blue-200 px-4 py-2 rounded-lg text-lg font-medium transition duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-24 px-6 md:py-32 md:px-12 overflow-hidden rounded-b-2xl shadow-xl">
+            <div class="container mx-auto text-center relative z-10">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">
+                    IMR PRINT HOUSE – Your One-Stop Creative Printing Solution
+                </h1>
+                <p class="text-lg sm:text-xl md:text-2xl font-light max-w-3xl mx-auto mb-8 opacity-90 animate-fade-in-up">
+                    In a world where first impressions matter, IMR PRINT HOUSE stands tall as a beacon of quality, creativity, and reliability in the printing industry.
+                </p>
+                <a href="#services" class="inline-block bg-white text-blue-700 hover:bg-blue-50 transition duration-300 ease-in-out font-semibold px-8 py-4 rounded-full text-lg shadow-lg transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50">
+                    Explore Our Services
+                </a>
+            </div>
+            <!-- Background Blob/Shape for visual interest -->
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-700 to-indigo-800 opacity-20 -z-0"></div>
+            <div class="absolute top-1/4 left-0 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+            <div class="absolute bottom-1/4 right-0 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-16 md:py-24 px-6 md:px-12 bg-white rounded-xl shadow-lg mt-8 mx-auto max-w-6xl">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center">Who We Are</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-lg leading-relaxed text-gray-700 mb-6">
+                            IMR PRINT HOUSE is a modern, full-service print shop committed to delivering high-quality printing services tailored to meet the unique needs of each customer. Founded with a vision to blend traditional printing expertise with cutting-edge technology, we specialize in both personal and commercial print work — from simple document prints to large-scale promotional materials.
+                        </p>
+                        <p class="text-lg leading-relaxed text-gray-700">
+                            Located in the heart of our community, IMR PRINT HOUSE has become a hub for creative minds, business owners, students, and event organizers looking for timely, affordable, and eye-catching print solutions.
+                        </p>
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <!-- Placeholder for a brand-related abstract SVG or text element -->
+                        <div class="bg-blue-500 rounded-full w-48 h-48 flex items-center justify-center text-white text-4xl font-bold opacity-90 shadow-xl">
+                            <span class="transform rotate-12">IMR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Mission Section -->
+        <section class="py-16 md:py-24 px-6 md:px-12 bg-gray-100 rounded-xl shadow-lg mt-8 mx-auto max-w-6xl">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-8">Our Mission</h2>
+                <p class="text-2xl font-semibold text-blue-700 leading-snug max-w-3xl mx-auto">
+                    Our mission is simple — to bring your ideas to life with color, clarity, and precision. Whether it’s a single page or a bulk order, we believe every print has the power to make a statement. That’s why we focus on quality, speed, and customer care in every project we handle.
+                </p>
+            </div>
+        </section>
+
+        <!-- What We Offer (Services) Section -->
+        <section id="services" class="py-16 md:py-24 px-6 md:px-12 bg-white rounded-xl shadow-lg mt-8 mx-auto max-w-6xl">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-12 text-center">What We Offer</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Card 1: Document Printing & Photocopying -->
+                    <div class="bg-blue-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 group">
+                        <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mb-4 text-blue-600 shadow-md icon-circle-container">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-700">Document Printing & Photocopying</h3>
+                        <p class="text-gray-600">Fast and affordable solutions for everyday needs – black & white or full color.</p>
+                    </div>
+
+                    <!-- Service Card 2: Posters & Banners -->
+                    <div class="bg-blue-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 group">
+                        <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mb-4 text-blue-600 shadow-md icon-circle-container">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-700">Posters & Banners</h3>
+                        <p class="text-gray-600">High-resolution large-format prints for advertising, events, and promotions.</p>
+                    </div>
+
+                    <!-- Service Card 3: Flyers, Brochures & Booklets -->
+                    <div class="bg-blue-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 group">
+                        <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mb-4 text-blue-600 shadow-md icon-circle-container">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-700">Flyers, Brochures & Booklets</h3>
+                        <p class="text-gray-600">Designed to grab attention and deliver information effectively.</p>
+                    </div>
+
+                    <!-- Service Card 4: Custom Invitations & Greeting Cards -->
+                    <div class="bg-blue-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 group">
+                        <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mb-4 text-blue-600 shadow-md icon-circle-container">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 5v6"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-700">Custom Invitations & Greeting Cards</h3>
+                        <p class="text-gray-600">Perfect for weddings, birthdays, or any special occasion.</p>
+                    </div>
+
+                    <!-- Service Card 5: Stickers & Labels -->
+                    <div class="bg-blue-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 group">
+                        <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mb-4 text-blue-600 shadow-md icon-circle-container">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h.01M3 7h.01M3 3h.01M17 7h.01M17 3h.01M21 7h.01M21 3h.01M12 21v-4m0 0v-4m0 4h4m-4 0H8m6 4a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-700">Stickers & Labels</h3>
+                        <p class="text-gray-600">Durable and vibrant prints for products, packaging, or branding.</p>
+                    </div>
+
+                    <!-- Service Card 6: Digital Design Services -->
+                    <div class="bg-blue-50 rounded-xl p-8 shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 group">
+                        <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mb-4 text-blue-600 shadow-md icon-circle-container">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-700">Digital Design Services</h3>
+                        <p class="text-gray-600">From logo design to full layout projects, our design team is here to help.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology & Quality Section -->
+        <section class="py-16 md:py-24 px-6 md:px-12 bg-gray-100 rounded-xl shadow-lg mt-8 mx-auto max-w-6xl">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-8">Technology & Quality</h2>
+                <p class="text-lg leading-relaxed text-gray-700 max-w-4xl mx-auto">
+                    IMR PRINT HOUSE uses the latest digital and offset printing technologies to ensure stunning results. We invest in high-quality printers, eco-friendly inks, and premium paper stocks to ensure each project meets industry standards and exceeds customer expectations. Our commitment to quality means your prints will always stand out.
+                </p>
+            </div>
+        </section>
+
+        <!-- Customer Service Section -->
+        <section class="py-16 md:py-24 px-6 md:px-12 bg-white rounded-xl shadow-lg mt-8 mx-auto max-w-6xl">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-8">Customer Service</h2>
+                <p class="text-lg leading-relaxed text-gray-700 max-w-4xl mx-auto mb-6">
+                    What sets IMR PRINT HOUSE apart is our customer-first approach. Our friendly, experienced team takes time to understand your needs and offers personalized guidance, whether you're printing your first business card or organizing a full event campaign.
+                </p>
+                <p class="text-lg leading-relaxed text-gray-700 max-w-4xl mx-auto">
+                    We also value time and efficiency — which is why we offer same-day services for many print jobs and ensure accurate delivery on schedule. Your satisfaction is our priority!
+                </p>
+            </div>
+        </section>
+
+        <!-- Our Vision for the Future Section -->
+        <section class="py-16 md:py-24 px-6 md:px-12 bg-gray-100 rounded-xl shadow-lg mt-8 mx-auto max-w-6xl">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-8">Our Vision for the Future</h2>
+                <p class="text-lg leading-relaxed text-gray-700 max-w-4xl mx-auto">
+                    As we grow, IMR PRINT HOUSE aims to become a leading name in the Sri Lankan printing landscape by continuing to innovate, expand our services, and maintain strong customer relationships. We envision a future where creativity meets efficiency, and where our print solutions help individuals and organizations succeed in their goals. We are constantly looking for new ways to serve you better.
+                </p>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-choose-us" class="py-16 md:py-24 px-6 md:px-12 bg-white rounded-xl shadow-lg mt-8 mx-auto max-w-6xl">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-12 text-center">Why Choose IMR PRINT HOUSE?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Benefit 1 -->
+                    <div class="flex items-start bg-blue-50 p-6 rounded-lg shadow-sm">
+                        <div class="text-blue-600 mr-4 mt-1">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">Quality prints, every time</h3>
+                            <p class="text-gray-600 mt-1">We guarantee high-quality results for all your printing needs.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 2 -->
+                    <div class="flex items-start bg-blue-50 p-6 rounded-lg shadow-sm">
+                        <div class="text-blue-600 mr-4 mt-1">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V6m0 4v4m0 4v2"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">Competitive prices</h3>
+                            <p class="text-gray-600 mt-1">Get the best value without compromising on quality.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 3 -->
+                    <div class="flex items-start bg-blue-50 p-6 rounded-lg shadow-sm">
+                        <div class="text-blue-600 mr-4 mt-1">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">Fast turnaround</h3>
+                            <p class="text-gray-600 mt-1">We respect your deadlines and deliver promptly.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 4 -->
+                    <div class="flex items-start bg-blue-50 p-6 rounded-lg shadow-sm">
+                        <div class="text-blue-600 mr-4 mt-1">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H4a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v10m-2 2v-3.5M16 10a2 2 0 00-2-2H6a2 2 0 00-2 2v4a2 2 0 002 2h2m8-3v-2"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">Friendly customer support</h3>
+                            <p class="text-gray-600 mt-1">Our team is always ready to assist you with a smile.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 5 -->
+                    <div class="flex items-start bg-blue-50 p-6 rounded-lg shadow-sm">
+                        <div class="text-blue-600 mr-4 mt-1">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">Creative design assistance</h3>
+                            <p class="text-gray-600 mt-1">Bring your ideas to life with our expert design team.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 6 -->
+                    <div class="flex items-start bg-blue-50 p-6 rounded-lg shadow-sm">
+                        <div class="text-blue-600 mr-4 mt-1">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">Wide range of customizable products</h3>
+                            <p class="text-gray-600 mt-1">From small prints to large banners, we have you covered.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 7 -->
+                    <div class="flex items-start bg-blue-50 p-6 rounded-lg shadow-sm">
+                        <div class="text-blue-600 mr-4 mt-1">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">Local service with a professional touch</h3>
+                            <p class="text-gray-600 mt-1">Proudly serving our community with expert printing solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 px-6 md:px-12 bg-gray-50 rounded-xl shadow-lg mt-8 mx-auto max-w-6xl">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-8">Get in Touch</h2>
+                <p class="text-lg leading-relaxed text-gray-700 max-w-2xl mx-auto mb-10">
+                    Ready to start your next printing project or have a question? We'd love to hear from you! Reach out to us through the contact details below.
+                </p>
+                <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Contact Info -->
+                    <div class="text-left">
+                        <h3 class="text-2xl font-bold text-blue-700 mb-4">Contact Information</h3>
+                        <p class="text-gray-700 mb-2 flex items-start">
+                            <svg class="w-6 h-6 text-blue-500 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            MHAKUMBURA, UVA PROVINCE, SRI LANKA
+                        </p>
+                        <p class="text-gray-700 mb-2 flex items-center">
+                            <!-- WhatsApp Logo SVG -->
+                            <svg class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.04 2.21C6.98 2.21 2.9 6.29 2.9 11.31c0 1.77.5 3.44 1.37 4.96L2.01 22l5.06-1.33c1.47.8 3.16 1.22 4.97 1.22 5.02 0 9.1-4.08 9.1-9.1s-4.08-9.1-9.1-9.1zM12.04 2.21a9.09 9.09 0 019.1 9.1c0 5.02-4.08 9.1-9.1 9.1a9.09 9.09 0 01-4.97-1.22L2.01 22l1.02-3.66c-.95-1.57-1.45-3.33-1.45-5.03C1.58 6.29 5.66 2.21 12.04 2.21z" fill="#25D366"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.84 13.67L14.82 11.89C14.62 11.54 14.32 11.43 13.96 11.6L13.66 11.74C13.36 11.88 13.01 12.02 12.63 12.14C12.33 12.23 12.05 12.28 11.78 12.28C11.61 12.28 11.48 12.26 11.33 12.21C10.96 12.09 10.67 11.94 10.41 11.74C10.13 11.54 9.85 11.27 9.61 10.96C9.21 10.48 8.9 9.9 8.71 9.19C8.59 8.73 8.75 8.27 9.07 8C9.44 7.63 10.19 7.37 10.51 7.2L10.75 7.08C10.98 6.96 11.19 6.83 11.38 6.68C11.56 6.53 11.72 6.38 11.89 6.22C12.26 5.85 12.56 5.47 12.81 4.98C13.11 4.49 13.31 3.99 13.4 3.5C13.49 3.01 13.49 2.5 13.49 2V2.01C13.49 1.75 13.47 1.51 13.41 1.27C13.34 1.03 13.26 0.79 13.15 0.55C13.04 0.31 12.9 0.08 12.75-.15C12.6-.38 12.44-.61 12.27-.82C12.09-1.04 11.9-1.25 11.71-1.46L11.71-1.46a.7.7 0 00-.99 0l-.2-.2C10.37-2.02 10.02-2.18 9.71-2.26C9.4-2.35 9.07-2.39 8.74-2.39C8.36-2.39 7.99-2.34 7.62-2.27L7.35-2.14C7.12-2.02 6.91-1.89 6.72-1.74C6.54-1.59 6.36-1.44 6.19-1.28C5.82-0.91 5.52-0.53 5.27-0.14C4.97 0.35 4.77 0.84 4.68 1.33C4.59 1.82 4.59 2.33 4.59 2.82S4.61 3.8 4.66 4.29C4.71 4.78 4.78 5.27 4.9 5.76C5.02 6.25 5.17 6.74 5.38 7.23C5.83 8.28 6.41 9.18 7.08 9.99C8.2 11.33 9.46 12.36 10.87 13.09C12.27 13.83 13.74 14.2 15.27 14.2C15.97 14.2 16.57 14.14 17.1 14.03C17.64 13.92 18.15 13.75 18.62 13.52L18.86 13.39C19.13 13.25 19.39 13.11 19.64 12.95C19.89 12.79 20.12 12.63 20.33 12.46L20.6 12.26C20.8 12.11 21 11.96 21.17 11.79C21.34 11.61 21.5 11.43 21.66 11.24C21.88 10.99 22.08 10.73 22.26 10.46C22.44 10.18 22.6 9.89 22.73 9.57C22.86 9.28 22.98 8.97 23.07 8.64C23.17 8.31 23.23 7.98 23.23 7.64C23.23 7.39 23.2 7.15 23.14 6.91C23.08 6.67 23 6.43 22.89 6.19C22.78 5.95 22.64 5.71 22.49 5.48L21.64 4.23L15.84 13.67z" fill="#fff"/>
+                            </svg>
+                            <a href="https://wa.me/94714224318?text=%E0%B6%94%E0%B6%B6%E0%B6%9C%E0%B7%9A%20%E0%B6%B1%E0%B6%B8%2C%20%E0%B6%AF%E0%B7%94%E0%B6%BB%E0%B6%9A%E0%B6%AD%E0%B6%B1%20%E0%B6%85%E0%B6%82%E0%B6%9A%E0%B6%BA%20%E0%B7%83%E0%B7%8F%20%E0%B6%B8%E0%B7%94%E0%B6%AF%E0%B7%8D%E0%B6%AB%E0%B6%BA%20%E0%B6%B4%E0%B7%92%E0%B7%85%E0%B7%92%E0%B6%B6%E0%B6%B3%20%E0%B6%AD%E0%B7%9C%E0%B6%BB%E0%B6%A4%E0%B7%94%E0%B6%BB%20%E0%B6%BD%E0%B6%B6%E0%B7%8F%E0%B6%AF%E0%B7%99%E0%B6%B1%E0%B7%8A%E0%B6%B1." target="_blank" class="text-blue-500 hover:text-blue-700 phone-number-link transition duration-300">
+                                <span class="mr-2">(Click Here)</span> +94 714224318
+                            </a>
+                        </p>
+                        <p class="text-gray-700 mb-2 flex items-center">
+                            <!-- Email Logo SVG -->
+                            <svg class="w-6 h-6 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.003 5.884L10.327 12l-8.324 6.116C2.015 18.064 2 18.033 2 18V6c0-.033.015-.064.003-.116zM21.997 5.884L13.673 12l8.324 6.116C21.985 18.064 22 18.033 22 18V6c0-.033-.015-.064-.003-.116zM12 13.5L2.003 6h19.994L12 13.5zM22 18c0 .552-.448 1-1 1H3c-.552 0-1-.448-1-1v-.058L12 13.5l10 4.442V18z"/>
+                            </svg>
+                            <a href="mailto:info@imrprinthouse.lk" class="text-blue-500 hover:text-blue-700 transition duration-300">info@imrprinthouse.lk (Example)</a>
+                        </p>
+                    </div>
+
+                    <!-- Simple Contact Form (placeholder) -->
+                    <div class="text-left">
+                        <h3 class="text-2xl font-bold text-blue-700 mb-4">Send us a Message</h3>
+                        <form onsubmit="sendWhatsAppMessage(event);" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 text-sm font-medium mb-1">Your Name</label>
+                                <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 text-sm font-medium mb-1">Your Email</label>
+                                <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 text-sm font-medium mb-1">Your Message</label>
+                                <textarea id="message" name="message" rows="4" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out shadow-md transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Message Box for form submission feedback -->
+                <div id="message-box" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[999] hidden">
+                    <div class="bg-white rounded-lg p-8 shadow-xl max-w-sm w-full text-center">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4" id="message-box-title">Message</h3>
+                        <p class="text-gray-700 mb-6" id="message-box-content">This is a sample message.</p>
+                        <button onclick="hideMessageBox()" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Got It!
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-10 px-6 md:px-12 mt-12 rounded-t-2xl">
+        <div class="container mx-auto text-center">
+            <p class="text-lg mb-4">&copy; 2025 IMR PRINT HOUSE. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#about" class="hover:text-blue-400 transition duration-200">About Us</a>
+                <a href="#services" class="hover:text-blue-400 transition duration-200">Services</a>
+                <a href="#contact" class="hover:text-blue-400 transition duration-200">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu and Theme Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Mobile menu toggle
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+
+        // Function to send message via WhatsApp
+        function sendWhatsAppMessage(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const whatsappMessage = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/94714224318?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank'); // Open in a new tab/window
+
+            // Show a confirmation message to the user
+            showMessage('Your message is being sent via WhatsApp! Please confirm in the opened chat window.');
+            // Reset the form fields after a short delay to allow the WhatsApp tab to open
+            setTimeout(() => {
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message').value = '';
+            }, 500); // Small delay before clearing, so user sees input fields for a moment
+        }
+
+        // Function to show custom message box
+        function showMessage(message) {
+            const messageBox = document.getElementById('message-box');
+            const messageBoxContent = document.getElementById('message-box-content');
+            messageBoxContent.textContent = message;
+            messageBox.classList.remove('hidden');
+        }
+
+        // Function to hide custom message box
+        function hideMessageBox() {
+            const messageBox = document.getElementById('message-box');
+            messageBox.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
